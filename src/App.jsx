@@ -5,9 +5,10 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
 import Error404 from "./pages/Error404";
 import Layout from "./components/Layout";
+import SignIn from "./pages/SignIn";
+import User from "./pages/User";
 
 function App() {
   const router = createBrowserRouter(
@@ -19,8 +20,13 @@ function App() {
         />
 
         <Route
-          path="/login"
-          element={<Login />}
+          path="/sign-in"
+          element={<SignIn />}
+        />
+
+        <Route
+          path="/user"
+          element={<User />}
         />
 
         <Route path="/*" element={<Error404 />} />
