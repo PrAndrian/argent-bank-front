@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import Error404 from "./pages/Error404";
 import Layout from "./components/Layout";
 import SignIn from "./pages/SignIn";
-import User from "./pages/User";
+import UserProfil from "./pages/UserProfil";
 
 function App() {
   const router = createBrowserRouter(
@@ -25,8 +25,8 @@ function App() {
         />
 
         <Route
-          path="/user"
-          element={<User />}
+          path="/profil"
+          element={<UserProfil />}
         />
 
         <Route path="/*" element={<Error404 />} />

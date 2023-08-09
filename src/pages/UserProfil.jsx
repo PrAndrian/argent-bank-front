@@ -1,5 +1,12 @@
+import { useSelector } from "react-redux";
+import { Navigate } from 'react-router-dom';
+const UserProfil = () => {
+  const token = useSelector((state) => state.auth.token);
 
-const User = () => {
+  if (!token) {
+    return <Navigate to="/Sign-in" />;
+  }
+
   return (
     <main className="main bg-dark">
     <div className="header">
@@ -41,4 +48,4 @@ const User = () => {
   )
 }
 
-export default User
+export default UserProfil
