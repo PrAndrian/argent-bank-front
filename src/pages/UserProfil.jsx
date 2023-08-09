@@ -15,11 +15,13 @@ const UserProfil = () => {
     .then(resp => resp.json())
     .then(data => setUserData(data.body))
   })
+  
   console.log(userData)
+
   return (
     <main className="main bg-dark">
     <div className="header">
-      <h1>Welcome back<br />{userData.firstName}!</h1>
+      <h1>Welcome back<br />{userData?.firstName}!</h1>
       <button className="edit-button">Edit Name</button>
     </div>
     <h2 className="sr-only">Accounts</h2>
