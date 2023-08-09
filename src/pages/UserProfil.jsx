@@ -1,16 +1,25 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Navigate } from 'react-router-dom';
+
 const UserProfil = () => {
   const token = useSelector((state) => state.auth.token);
+  const [userData, setUserData] = useState(null);
 
-  if (!token) {
-    return <Navigate to="/Sign-in" />;
-  }
-
+  useEffect(() =>{
+    fetch('http://localhost:3001/api/v1/user/profile', {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(resp => resp.json())
+    .then(data => setUserData(data.body))
+  })
+  console.log(userData)
   return (
     <main className="main bg-dark">
     <div className="header">
-      <h1>Welcome back<br />Tony Jarvis!</h1>
+      <h1>Welcome back<br />{userData.firstName}!</h1>
       <button className="edit-button">Edit Name</button>
     </div>
     <h2 className="sr-only">Accounts</h2>

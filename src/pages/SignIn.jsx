@@ -34,7 +34,6 @@ const SignIn = () => {
     if (response.ok) {
       const data = await response.json();
       const token = data.body.token;
-      console.log(token);
       dispatch(login({token}));
       navigate('/profil', {replace: true});
     }
