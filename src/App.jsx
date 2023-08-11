@@ -12,7 +12,7 @@ import Home from "./pages/Home";
 import Error404 from "./pages/Error404";
 import Layout from "./components/Layout";
 import UserProfil from "./pages/UserProfil";
-import SignIn from "./pages/SignIn";
+import SignIn from "./pages/Login";
 
 function App() {
   const router = createBrowserRouter(
@@ -24,12 +24,12 @@ function App() {
           />
 
           <Route
-            path="/sign-in"
+            path="/login"
             element={<SignIn />}
           />
 
           <Route element={<PrivateRoutes />}>
-            <Route path="/profil" element={<UserProfil />} />
+            <Route path="/profile" element={<UserProfil />} />
           </Route>
 
           <Route path="/*" element={<Error404 />} />

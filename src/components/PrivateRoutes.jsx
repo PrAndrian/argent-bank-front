@@ -4,7 +4,7 @@ import store from "../utils/store";
 const PrivateRoutes = () => {
   const isAuthenticated = store.getState().auth.isAuthenticated;
   return (
-    isAuthenticated ? <Outlet/> : <Navigate to='/sign-in'/>
+    isAuthenticated ? <Outlet/> : <Navigate to='/login'/>
   )
 };
 

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { login } from "../utils/authSlice";
 import { useNavigate } from "react-router-dom";
 
-const SignIn = () => {
+const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const SignIn = () => {
       const data = await response.json();
       const token = data.body.token;
       dispatch(login({token}));
-      navigate('/profil', {replace: true});
+      navigate('/profile', {replace: true});
     }
   };
 
@@ -81,4 +81,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default Login

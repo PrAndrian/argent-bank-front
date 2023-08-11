@@ -28,7 +28,7 @@ const Navbar = () => {
     {token ? 
       (
         <>
-          <Link className="main-nav-item" to='/profil' >
+          <Link className="main-nav-item" to='/profile' >
             <i className="fa fa-user-circle"></i>
             Profil
           </Link>
@@ -44,7 +44,7 @@ const Navbar = () => {
       )
     : 
       (
-        <Link className="main-nav-item" to="/sign-in">
+        <Link className="main-nav-item" to="/login">
           <i className="fa fa-user-circle"></i>
           Sign In
         </Link>
