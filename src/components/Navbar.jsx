@@ -32,7 +32,12 @@ const Navbar = () => {
         <>
           <Link className="main-nav-item" to='/profile' >
             <i className="fa fa-user-circle"></i>
-            &nbsp;{userDataLocalStorage?.firstName || userDataToolkit?.firstName}
+            &nbsp;
+            { 
+              userDataLocalStorage ? 
+                userDataLocalStorage?.firstName :
+                userDataToolkit?.firstName
+            }
           </Link>
 
           <a 

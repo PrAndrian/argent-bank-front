@@ -22,7 +22,10 @@ function App() {
           <Route path="/login" element={<SignIn />} />
 
           <Route element={<PrivateRoutes />}>
-            <Route path="/profile" element={<UserProfil />} />
+            <Route 
+              path="/profile" 
+              element={<UserProfil />}
+            />
           </Route>
           
           <Route path="/*" element={<Error404 />} />

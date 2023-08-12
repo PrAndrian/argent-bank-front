@@ -27,7 +27,7 @@ const Home = () => {
           <div className="feature-item">
             <img
               src={IconMoney}
-              alt="Chat Icon"
+              alt="Money Icon"
               className="feature-icon"
             />
             <h3 className="feature-item-title">More savings means higher rates</h3>
@@ -38,7 +38,7 @@ const Home = () => {
           <div className="feature-item">
             <img
               src={IconSecurity}
-              alt="Chat Icon"
+              alt="Security Icon"
               className="feature-icon"
             />
             <h3 className="feature-item-title">Security you can trust</h3>

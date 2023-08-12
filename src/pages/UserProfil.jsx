@@ -1,28 +1,21 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ModalUpdateProfil from "../components/ModalUpdateProfil";
+import UpdateProfilModal from "../components/UpdateProfilModal";
 import { setCredentials } from "../utils/authSlice"
+import { getUserData } from "../service/requestApi";
 
 const UserProfil = () => {
   const token = useSelector((state) => state.auth.token)
   const userData = useSelector((state) => state.auth.userData);
   const [editShowing, setEditShowing] = useState(false);
   const dispatch = useDispatch();
-  // const userDataObject = JSON.parse(userData);
 
   useEffect(() =>{
-    fetch('http://localhost:3001/api/v1/user/profile', {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      }
-    })
-    .then(resp => resp.json())
-    .then(data => {
-      const userData = data.body;
+    async function fetchDataAndLog() {
+      const userData = await getUserData(token)
       dispatch(setCredentials(userData));
-    })
+    }
+    fetchDataAndLog() 
   },[token,dispatch])
   
   const handleClick = async (event) => {
@@ -36,7 +29,7 @@ const UserProfil = () => {
     <div className="header" style={{marginTop:"50px",}}>
       <h1>Welcome back<br />{userData?.firstName +" "+ userData?.lastName}!</h1>
       <button className="edit-button" onClick={handleClick}>Edit Name</button>
-      {editShowing && <ModalUpdateProfil/>}
+      {editShowing && <UpdateProfilModal/>}
     </div>
     <h2 className="sr-only">Accounts</h2>
     <section className="account">

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../utils/authSlice";
+import { updateUserData } from "../service/requestApi";
 
 const ModalUpdateProfil = () => {
     const token = useSelector((state) => state.auth.token);
@@ -22,25 +22,12 @@ const ModalUpdateProfil = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const response = await fetch("http://localhost:3001/api/v1/user/profile", {
-            method: "PUT",
-            body: JSON.stringify({
-                firstName : firstName.length === 0 ? userData.firstName : firstName,
-                lastName : lastName.length === 0 ? userData.lastName : lastName,
-            }),
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            }
-        })
+        const response = await updateUserData(token,userData,firstName,lastName)
+        const updatedUserData = response.body;
+        dispatch(setCredentials(updatedUserData))
+        document.querySelector("#firstName").value = ''
+        document.querySelector("#lastName").value = ''
         
-        if (response.ok) {
-          const data = await response.json();
-          console.log(data)
-          dispatch(setCredentials(data.body))
-            document.querySelector("#firstName").value = ''
-            document.querySelector("#lastName").value = ''
-        }
     } 
 
   return (
@@ -74,10 +61,5 @@ const ModalUpdateProfil = () => {
     </div>
   )
 }
-
-ModalUpdateProfil.propTypes ={
-    token: PropTypes.string,
-    userData: PropTypes.objectOf(PropTypes.string)
-};
 
 export default ModalUpdateProfil
