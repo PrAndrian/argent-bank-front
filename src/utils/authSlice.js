@@ -3,9 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        isAuthenticated: false,
         token: null, // Stockez ici le jeton
-        userData : '',
+        userData : null,// Stockez ici les infos utilisateurs
     },
     reducers: {
         setCredentials: (state, action) => {
@@ -13,12 +12,10 @@ const authSlice = createSlice({
             localStorage.setItem('userData', JSON.stringify(action.payload));
         },
         login: (state, action) => {
-            state.isAuthenticated = true;
             state.token = action.payload.token; // Mettez à jour le jeton lors de la connexion
             localStorage.setItem('token', state.token);
         },
         logout: (state) => {
-            state.isAuthenticated = false;
             state.token = null; // Effacez le jeton lors de la déconnexion
             localStorage.removeItem('token');
             localStorage.removeItem('userData');

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../utils/authSlice";
 
-const ModalUpdateProfil = ({userData}) => {
+const ModalUpdateProfil = () => {
     const token = useSelector((state) => state.auth.token);
+    const userData = useSelector((state) => state.auth.userData);
     const dispatch = useDispatch()
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('')

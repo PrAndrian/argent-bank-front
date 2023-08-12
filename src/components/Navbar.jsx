@@ -5,7 +5,8 @@ import { logout } from '../utils/authSlice';
 
 const Navbar = () => {
   const token = useSelector((state) => state.auth.token);
-  const userData = useSelector((state) => state.auth.userData);
+  const userDataLocalStorage = JSON.parse(localStorage.getItem('userData'));
+  const userDataToolkit = useSelector((state) => state.auth.userData);
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -31,7 +32,7 @@ const Navbar = () => {
         <>
           <Link className="main-nav-item" to='/profile' >
             <i className="fa fa-user-circle"></i>
-            {userData?.firstName}
+            &nbsp;{userDataLocalStorage?.firstName || userDataToolkit?.firstName}
           </Link>
 
           <a 
@@ -46,7 +47,7 @@ const Navbar = () => {
       (
         <Link className="main-nav-item" to="/login">
           <i className="fa fa-user-circle"></i>
-          Sign In
+          &nbsp;Sign In
         </Link>
       )
     }
