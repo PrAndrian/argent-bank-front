@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ModalUpdateProfil from "../components/ModalUpdateProfil";
+import { setCredentials } from "../utils/authSlice"
 
 const UserProfil = () => {
-  const token = useSelector((state) => state.auth.token);
-  const [userData, setUserData] = useState(null);
+  const token = useSelector((state) => state.auth.token)
+  const userData = useSelector((state) => state.auth.userData);
   const [editShowing, setEditShowing] = useState(false);
+  const dispatch = useDispatch()
 
   useEffect(() =>{
     fetch('http://localhost:3001/api/v1/user/profile', {
@@ -16,8 +18,11 @@ const UserProfil = () => {
       }
     })
     .then(resp => resp.json())
-    .then(data => setUserData(data.body))
-  })
+    .then(data => {
+      const userData = data.body;
+      dispatch(setCredentials(userData));
+    })
+  },[token,dispatch])
   
   const handleClick = async (event) => {
     event.preventDefault();

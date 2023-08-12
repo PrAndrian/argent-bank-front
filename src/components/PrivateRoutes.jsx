@@ -3,8 +3,10 @@ import store from "../utils/store";
 
 const PrivateRoutes = () => {
   const isAuthenticated = store.getState().auth.isAuthenticated;
+  const localStorageToken = localStorage.getItem('token');
+
   return (
-    isAuthenticated ? <Outlet/> : <Navigate to='/login'/>
+    isAuthenticated || localStorageToken ? <Outlet/> : <Navigate to='/login'/>
   )
 };
 

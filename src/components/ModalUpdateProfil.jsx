@@ -1,9 +1,11 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCredentials } from "../utils/authSlice";
 
 const ModalUpdateProfil = ({userData}) => {
     const token = useSelector((state) => state.auth.token);
+    const dispatch = useDispatch()
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('')
 
@@ -32,7 +34,9 @@ const ModalUpdateProfil = ({userData}) => {
         })
         
         if (response.ok) {
-            console.log(await response.json())
+          const data = await response.json();
+          console.log(data)
+          dispatch(setCredentials(data.body))
             document.querySelector("#firstName").value = ''
             document.querySelector("#lastName").value = ''
         }

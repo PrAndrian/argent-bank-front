@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from "../utils/authSlice";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const token = useSelector((state)=>state.auth.token);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
@@ -38,6 +39,8 @@ const Login = () => {
       navigate('/profile', {replace: true});
     }
   };
+
+  if(token){return <Navigate to='/profile'/>}
 
   return (
     <main className="main bg-dark">
