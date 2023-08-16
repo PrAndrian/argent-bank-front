@@ -6,6 +6,8 @@ const Login = () => {
   const token = useSelector((state)=>state.auth.token);
   if(token){return <Navigate to='/profile'/>}
 
+  document.title = `Argent Bank - Login`;
+  
   return (
     <main className="main bg-dark">
       <section className="sign-in-content">

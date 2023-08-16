@@ -3,6 +3,7 @@ import IconMoney from '../assets/icon-money.png';
 import IconSecurity from '../assets/icon-security.png';
 
 const Home = () => {
+  document.title = `Argent Bank - Home`;
   return (
       <main>
         <div className="hero">

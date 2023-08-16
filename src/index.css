@@ -290,3 +290,67 @@
 	}
   }
   
+  /* 404 erreur -------------------------- */
+#page404{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color : #00bc77;
+    padding : 50px;
+}
+
+.error404{
+    font-weight: 700;
+    font-size: 96px;
+    margin-top: 150px;
+    margin-bottom: 11px;
+}
+
+.sentence404{
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 133px;
+    text-align: center;
+}
+
+.link404{
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: underline;
+    margin-bottom: 235px;
+}
+
+@media screen and (min-width: 769px) {
+
+    #page404{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color : #00bc77;
+        height: 100vh;
+    }
+
+    .error404{
+        font-weight: 700;
+        font-size: 288px;
+        margin-bottom: 66px;
+        margin-top: 0px;
+    }
+    
+    .sentence404{
+        font-weight: 500;
+        font-size: 36px;
+        margin-bottom: 0px;
+    }
+    
+    .link404{
+        font-weight: 500;
+        font-size: 18px;
+        text-decoration: underline;
+        margin-top: 80px;
+        color : black;
+    }
+    
+}

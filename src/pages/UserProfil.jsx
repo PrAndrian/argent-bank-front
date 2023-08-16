@@ -23,6 +23,7 @@ const UserProfil = () => {
     setEditShowing(!editShowing)
   } 
 
+  document.title = `Argent Bank - Profil of ${userData?.firstName} ${userData?.lastName}`;
   
   return (
     <main className="main bg-dark" >
