@@ -20,7 +20,6 @@ export const signIn = async (email,password) => {
 
         const data = await response.json();
         const token = data.body.token;
-        console.log('From requestAPI',data);
         return token;
     }catch(e){
         console.error(e.message)

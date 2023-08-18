@@ -34,9 +34,10 @@ const Navbar = () => {
             <i className="fa fa-user-circle"></i>
             &nbsp;
             { 
-              userDataLocalStorage ? 
-                userDataLocalStorage?.firstName :
-                userDataToolkit?.firstName
+              userDataToolkit?.firstName ? 
+                userDataToolkit?.firstName 
+              : 
+                userDataLocalStorage?.firstName 
             }
           </Link>
 

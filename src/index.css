@@ -191,6 +191,12 @@
 	flex-direction: column;
 	text-align: left;
 	margin-bottom: 1rem;
+	margin-top: 10px;
+  }
+
+  #loginFrom::before {
+	content: attr(data-error);
+	color :red;
   }
   
   .input-wrapper label {

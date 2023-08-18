@@ -20,42 +20,48 @@ const SignInModal = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const token = await signIn(email,password)
-        dispatch(login({token}));
-        navigate('/profile', {replace: true});
+        document.querySelector('#loginFrom').setAttribute("data-error", "");  
+        const token = await signIn(email,password);
+        if(token){
+            dispatch(login({token}));
+            navigate('/profile', {replace: true});  
+        }else{
+            document.querySelector('#loginFrom').setAttribute("data-error", 
+            `Please check you email adress or your password`);  
+        }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-        <div className="input-wrapper">
-        <label htmlFor="email">Email</label>
-        <input 
-            type="text" 
-            id="email" 
-            onChange={handleUsernameChange}
-        />
-        </div>
+        <form id="loginFrom" onSubmit={handleSubmit} data-error="">
+            <div className="input-wrapper">
+                <label htmlFor="email" >Email</label>
+                <input 
+                    type="text" 
+                    id="email" 
+                    onChange={handleUsernameChange}
+                />
+            </div>
 
-        <div className="input-wrapper">
-        <label htmlFor="password">Password</label>
-        <input 
-            type="password" 
-            id="password" 
-            onChange={handlePasswordChange}
-        />
-        </div>
+            <div className="input-wrapper">
+                <label htmlFor="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    onChange={handlePasswordChange}
+                />
+            </div>
 
-        <div className="input-remember">
-        <input type="checkbox" id="remember-me" />
-        <label htmlFor="remember-me">Remember me</label>
-        </div>
+            <div className="input-remember">
+                <input type="checkbox" id="remember-me" />
+                <label htmlFor="remember-me">Remember me</label>
+            </div>
 
-        <button 
-        className="sign-in-button"
-        type="submit"
-        >
-        Submit
-        </button>
+            <button 
+                className="sign-in-button"
+                type="submit"
+            >
+            Submit
+            </button>
     </form>
     )
 }
