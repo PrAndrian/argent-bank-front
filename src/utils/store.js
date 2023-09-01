@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './authSlice';
+import editingFormReducer from './editingFormSlice';
 
 const localStorageToken = localStorage.getItem('token');
 const localStorageUserData = localStorage.getItem('userData');
@@ -14,6 +15,7 @@ const initialState = {
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    editingForm: editingFormReducer,
   },
   preloadedState: initialState,
 });

@@ -13,8 +13,10 @@
   .main {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	flex: 1;
-	min-height: 100vh;
+	min-height: 90vh;
   }
   
   .bg-dark {
@@ -168,9 +170,7 @@
   .sign-in-content {
 	box-sizing: border-box;
 	background-color: white;
-	width: 300px;
-	margin: 0 auto;
-	margin-top: 3rem;
+	width: fit-content;	
 	padding: 2rem;
   }
   
@@ -359,4 +359,54 @@
         color : black;
     }
     
+}
+
+/* edit */
+.container-input{
+	display: flex;
+	width: fit-content;
+	padding: 0;
+	gap : 20px;
+}
+.container-button{
+	display: flex;
+	width: 300px;
+	gap : 20px;
+}
+
+.form{
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+}
+
+.username{
+	font-size: 2rem;
+	font-weight: bold;
+	margin: 0 0 20px 0;
+}
+
+.profil-title{
+	margin : 0 0 10px 0;
+}
+
+.edit-content {
+	box-sizing: border-box;
+	width: fit-content;	
+}
+
+.input-wrapper-edit {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+}
+.input-wrapper-edit > input {
+	padding: 10px;
+	width: 200px;
+	font-size: 20px;
+	color : gray
+}
+.input-wrapper-edit > input:focus {
+	color : black
 }

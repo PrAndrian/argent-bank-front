@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UpdateProfilModal from "../components/UpdateProfilModal";
 import { setCredentials } from "../utils/authSlice"
+import { setVisibility } from "../utils/editingFormSlice"
 import { getUserData } from "../service/requestApi";
 
 const UserProfil = () => {
   const token = useSelector((state) => state.auth.token)
   const userData = useSelector((state) => state.auth.userData);
-  const [editShowing, setEditShowing] = useState(false);
+  const showModalEdit = useSelector((state) => state.editingForm.visible);
   const dispatch = useDispatch();
 
   useEffect(() =>{
@@ -20,7 +21,7 @@ const UserProfil = () => {
   
   const handleClick = async (event) => {
     event.preventDefault();
-    setEditShowing(!editShowing)
+    dispatch(setVisibility(!showModalEdit));
   } 
 
   document.title = `Argent Bank - Profil of ${userData?.firstName} ${userData?.lastName}`;
@@ -28,9 +29,15 @@ const UserProfil = () => {
   return (
     <main className="main bg-dark" >
     <div className="header" style={{marginTop:"50px",}}>
-      <h1>Welcome back<br />{userData?.firstName +" "+ userData?.lastName}!</h1>
-      <button className="edit-button" onClick={handleClick}>Edit Name</button>
-      {editShowing && <UpdateProfilModal/>}
+      <h1 className="profil-title">Welcome back</h1>
+        {showModalEdit ? 
+          <UpdateProfilModal/> 
+        : 
+        <>
+          <p className="username">{userData?.firstName +" "+ userData?.lastName} !</p>
+          <button className="edit-button" onClick={handleClick}>Edit Name</button>
+        </>
+        } 
     </div>
     <h2 className="sr-only">Accounts</h2>
     <section className="account">
