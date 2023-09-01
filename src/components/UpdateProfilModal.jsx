@@ -38,11 +38,13 @@ const ModalUpdateProfil = () => {
           return;
         }
         
+        var regexEspaces = /\s{2,}/;
+
         const response = await updateUserData(
           token,
           userData,
-          firstName.replace(/\s+/g, ' '),
-          lastName.replace(/\s+/g, ' ')
+          regexEspaces.test(firstName)? firstName.replace(/\s+/g, ' ') : firstName,
+          regexEspaces.test(lastName)? lastName.replace(/\s+/g, ' ') : lastName,
         )
         const updatedUserData = response.body;
         dispatch(setCredentials(updatedUserData))
