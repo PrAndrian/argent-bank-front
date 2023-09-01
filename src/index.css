@@ -191,11 +191,17 @@
 	flex-direction: column;
 	text-align: left;
 	margin-bottom: 1rem;
-	margin-top: 10px;
+	margin-top: 20px;
+  }
+
+  #loginFrom{
+	width: 350px;
   }
 
   #loginFrom::before {
 	content: attr(data-error);
+	font-size: 16px;
+	font-weight: bold;
 	color :red;
   }
   
