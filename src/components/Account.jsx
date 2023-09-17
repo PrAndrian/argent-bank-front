@@ -11,7 +11,7 @@ const Account = ({ title, amount, description }) => {
       <div className="account-content-wrapper cta">
         <button className="transaction-button">Voir les transactions</button>
       </div>
-    </section>
+    </section> 
   );
 }
 
