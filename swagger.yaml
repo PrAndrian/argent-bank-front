@@ -126,12 +126,24 @@ paths:
           description: Attach Bearer JWT token
           type : string
           required: true
-        - in: body
-          name: body
-          description: ID bank account
-          required: true
+        - in: query
+          name: account_id
           schema:
-            $ref: '#/definitions/BanckAccount'
+            type: string
+          required: true
+          description: The ID of the bank account
+        - in: query
+          name: start_date
+          schema:
+            type: string
+          required: true
+          description: The start date of the current month (e.g., "2023-09-01")
+        - in: query
+          name: end_date
+          schema:
+            type: string
+          required: true
+          description: The end date of the current month (e.g., "2023-09-30")
       produces:
         - application/json
       responses:
