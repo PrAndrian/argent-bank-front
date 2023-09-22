@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../utils/authSlice";
@@ -9,7 +9,7 @@ const SignInModal = () => {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
     const navigate = useNavigate()
-
+    const loginFrom = useRef(undefined)
     const handleUsernameChange = (e) => {
         setEmail(e.target.value);
       };
@@ -20,19 +20,19 @@ const SignInModal = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        document.querySelector('#loginFrom').setAttribute("data-error", "");  
+        loginFrom.current.setAttribute("data-error", "");  
         const token = await signIn(email,password);
         if(token){
             dispatch(login({token}));
             navigate('/profile', {replace: true});  
         }else{
-            document.querySelector('#loginFrom').setAttribute("data-error", 
+            loginFrom.current.setAttribute("data-error", 
             `Please check you email adress or your password`);  
         }
     };
 
     return (
-        <form id="loginFrom" onSubmit={handleSubmit} data-error="">
+        <form ref={loginFrom} id="loginFrom" onSubmit={handleSubmit} data-error="">
             <div className="input-wrapper">
                 <label htmlFor="email" >Email</label>
                 <input 
