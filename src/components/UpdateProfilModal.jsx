@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../utils/authSlice";
 import { updateUserData } from "../service/requestApi";
@@ -11,6 +11,8 @@ const ModalUpdateProfil = () => {
     const dispatch = useDispatch()
     const [firstName, setFirstName] = useState(userData.firstName);
     const [lastName, setLastName] = useState(userData.lastName)
+
+    const errorMessage = useRef(undefined)
 
     const handleFirstNameChange = (e) => {
         e.preventDefault()
@@ -27,14 +29,14 @@ const ModalUpdateProfil = () => {
 
         const regex = /[!@#$%^&*()_+{}\\[\]:;<>,.?~\\|]/;
         if(regex.test(firstName) || regex.test(lastName)){
-          document.querySelector('.error-message').style.display = "inline-block";  
-          document.querySelector('.error-message').innerHTML = "Please do not use special characters in your names";  
+          errorMessage.current.style.display = "inline-block";  
+          errorMessage.current.innerHTML = "Please do not use special characters in your names";  
           return;
         }
 
         if(firstName.length === 0 || lastName.length === 0){
-          document.querySelector('.error-message').style.display = "inline-block";  
-          document.querySelector('.error-message').innerHTML = "Your fristName or lastName should not be empty fields";  
+          errorMessage.current.style.display = "inline-block";  
+          errorMessage.current.innerHTML = "Your fristName or lastName should not be empty fields";  
           return;
         }
         
@@ -58,7 +60,7 @@ const ModalUpdateProfil = () => {
 
   return (
     <div className="edit-content" style={{color:"black",}}>
-        <span className="error-message"></span>
+        <span ref={errorMessage} className="error-message"></span>
         <form className="form" onSubmit={handleSubmit}>
           <div className="container-input" >
             <div className="input-wrapper-edit" >
